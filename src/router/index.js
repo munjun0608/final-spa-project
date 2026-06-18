@@ -3,6 +3,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
 // [12주차 추가] 신규 생성할 영화 상세 페이지 컴포넌트 연결
 import MovieDetailView from "../views/MovieDetailView.vue";
+import NotFoundView from "../views/NotFoundView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
