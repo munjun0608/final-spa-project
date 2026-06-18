@@ -18,11 +18,15 @@ const router = createRouter({
       name: "movies",
       component: () => import("../views/MoviesView.vue"),
     },
-    // [12주차 추가] 웹 표준 동적 패스 파라미터 주소 등록 (:id 변수방 개설)
     {
       path: "/movies/:id",
       name: "movie-detail",
       component: MovieDetailView,
+    },
+    {
+      path: "/:pathMatch(.*)*",
+      name: "not-found",
+      component: NotFoundView,
     },
   ],
 });
