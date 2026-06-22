@@ -64,11 +64,11 @@ export const useMovieStore = defineStore("movie", () => {
 
   // [찜하기 토글 및 세션 스토리지 반영 로직 - 홈 화면 해제 버그 수정]
   const toggleFavorite = (movieId) => {
-    // 1. 먼저 현재 불러온 전체 영화 목록(movies)에서 해당 영화를 찾습니다.
+    // 1. 먼저 현재 불러온 전체 영화 목록(movies)에서 해당 영화를 찾기
     const movie = movies.value.find((m) => m.id === movieId);
 
     if (movie) {
-      // 목록에 영화가 존재하면 기존처럼 토글 처리하여 favorites 배열에 추가/제거를 수행합니다.
+      // 목록에 영화가 존재하면 기존처럼 토글 처리하여 favorites 배열에 추가/제거를 수행
       movie.isFavorite = !movie.isFavorite;
 
       if (movie.isFavorite) {
@@ -77,15 +77,15 @@ export const useMovieStore = defineStore("movie", () => {
         favorites.value = favorites.value.filter((m) => m.id !== movieId);
       }
     } else {
-      // 2. [예외 조치] 홈 화면처럼 movies 배열이 비어있는 상태에서 찜 해제를 눌렀을 때의 방어선입니다.
-      // 전역 찜 목록(favorites)에서 직접 해당 영화를 찾아내어 리스트에서 즉시 제거합니다.
+      // 2. [예외 조치] 홈 화면처럼 movies 배열이 비어있는 상태에서 찜 해제를 눌렀을 때의 방어선
+      // 전역 찜 목록(favorites)에서 직접 해당 영화를 찾아내어 리스트에서 즉시 제거
       const favoriteMovie = favorites.value.find((m) => m.id === movieId);
       if (favoriteMovie) {
         favorites.value = favorites.value.filter((m) => m.id !== movieId);
       }
     }
 
-    // 최종적으로 가공된 찜 목록 상태 배열을 브라우저 세션 스토리지에 동기화합니다.
+    // 최종적으로 가공된 찜 목록 상태 배열을 브라우저 세션 스토리지에 동기화
     sessionStorage.setItem("favorites", JSON.stringify(favorites.value));
   };
 
@@ -115,7 +115,7 @@ export const useMovieStore = defineStore("movie", () => {
     }
   };
 
-  // [4] 컴포넌트가 사용할 수 있도록 상태와 함수들을 반환합니다.
+  // [4] 컴포넌트가 사용할 수 있도록 상태와 함수들을 반환
   return {
     movies,
     favorites,
